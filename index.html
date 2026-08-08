@@ -1,1 +1,442 @@
- Project Initialization
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StudyMate AI | Assignment Planner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #0b1220;
+      color: #f8fafc;
+      min-height: 100vh;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(15, 23, 42, 0.95);
+      border-bottom: 1px solid #1e293b;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 40px;
+      z-index: 100;
+    }
+
+    nav h1 {
+      font-size: 20px;
+      letter-spacing: 1px;
+      color: #38bdf8;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 24px;
+    }
+
+    nav a {
+      color: #e2e8f0;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover {
+      color: #38bdf8;
+    }
+
+    header {
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 120px 40px 80px;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 45%, #0f172a 100%);
+    }
+
+    .hero {
+      max-width: 960px;
+      text-align: center;
+    }
+
+    .hero h2 {
+      font-size: 48px;
+      margin-bottom: 20px;
+      line-height: 1.05;
+      color: #f8fafc;
+    }
+
+    .hero p {
+      font-size: 18px;
+      line-height: 1.9;
+      color: #cbd5e1;
+      margin-bottom: 30px;
+    }
+
+    .hero .hero-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 28px;
+      border-radius: 999px;
+      background: #38bdf8;
+      color: #0f172a;
+      text-decoration: none;
+      font-weight: 600;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .hero .hero-btn:hover {
+      transform: translateY(-2px);
+      background: #60a5fa;
+    }
+
+    section {
+      padding: 90px 40px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .section-title {
+      text-align: center;
+      color: #38bdf8;
+      font-size: 36px;
+      margin-bottom: 24px;
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .feature-card,
+    .demo-card {
+      background: #111827;
+      border: 1px solid #1f2937;
+      border-radius: 24px;
+      padding: 30px;
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+
+    .feature-card:hover,
+    .demo-card:hover {
+      transform: translateY(-6px);
+      border-color: #2563eb;
+    }
+
+    .feature-card h3,
+    .demo-card h3 {
+      color: #38bdf8;
+      margin-bottom: 14px;
+      font-size: 22px;
+    }
+
+    .feature-card p,
+    .demo-card p,
+    .result-box {
+      color: #cbd5e1;
+      line-height: 1.8;
+      font-size: 16px;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    .demo-card label {
+      display: block;
+      margin-top: 16px;
+      font-size: 14px;
+      color: #94a3b8;
+    }
+
+    .demo-card input,
+    .demo-card textarea,
+    .demo-card select,
+    .demo-card button {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid #334155;
+      background: #0f172a;
+      color: #e2e8f0;
+      padding: 12px 14px;
+      margin-top: 8px;
+      font-size: 15px;
+      outline: none;
+    }
+
+    .demo-card textarea {
+      resize: vertical;
+    }
+
+    .demo-card button {
+      background: #38bdf8;
+      color: #0f172a;
+      font-weight: 700;
+      margin-top: 18px;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .demo-card button:hover {
+      background: #60a5fa;
+    }
+
+    .result-box {
+      background: #0f172a;
+      border: 1px solid #1e293b;
+      min-height: 140px;
+      padding: 16px;
+      margin-top: 18px;
+      border-radius: 16px;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      border-top: 1px solid #1e2937;
+      color: #94a3b8;
+      font-size: 15px;
+      background: #020617;
+    }
+
+    @media (max-width: 700px) {
+      nav {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .hero h2 {
+        font-size: 34px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <h1>StudyMate AI</h1>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#demo">Live Demo</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <header id="home">
+    <div class="hero">
+      <h2>Stay on top of assignments, exams, and study goals with StudyMate AI.</h2>
+      <p>StudyMate AI helps students build smart study schedules, track assignments, summarize notes, generate quizzes, and monitor attendance — all from one dashboard.</p>
+      <a href="#demo" class="hero-btn"><i class="fas fa-rocket"></i>Try the demo</a>
+    </div>
+  </header>
+
+  <section id="features">
+    <h2 class="section-title">What StudyMate AI Does</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h3>AI-Generated Schedules</h3>
+        <p>Enter your subjects and available study days to receive a balanced plan that keeps you moving toward every deadline.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Assignment Reminder</h3>
+        <p>Capture your tasks, due dates, and notes so important work is always visible and easy to follow.</p>
+      </div>
+      <div class="feature-card">
+        <h3>PDF Summarizer</h3>
+        <p>Paste lecture notes or PDF text to get a concise summary that helps you revise faster and retain key ideas.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Quiz Generator</h3>
+        <p>Create custom quiz questions from any topic to practice actively and check your understanding before exams.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Attendance Tracker</h3>
+        <p>Record classes attended and total classes to see your progress and maintain a healthy attendance percentage.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="demo">
+    <h2 class="section-title">Interactive Demo</h2>
+    <div class="demo-grid">
+      <div class="demo-card">
+        <h3>Study Schedule Generator</h3>
+        <label for="scheduleSubjects">Subjects</label>
+        <input id="scheduleSubjects" placeholder="Math, Physics, English" />
+        <label for="scheduleDays">Available days</label>
+        <select id="scheduleDays">
+          <option value="3">3 days</option>
+          <option value="5" selected>5 days</option>
+          <option value="7">7 days</option>
+        </select>
+        <button type="button" onclick="generateSchedule()">Generate Schedule</button>
+        <div id="scheduleResult" class="result-box">Your generated study schedule will appear here.</div>
+      </div>
+
+      <div class="demo-card">
+        <h3>Assignment Reminder</h3>
+        <label for="reminderText">Reminder</label>
+        <input id="reminderText" placeholder="Complete chemistry assignment" />
+        <label for="reminderDate">Due date</label>
+        <input id="reminderDate" type="date" />
+        <button type="button" onclick="addReminder()">Add Reminder</button>
+        <div id="reminderList" class="result-box">No reminders yet.</div>
+      </div>
+
+      <div class="demo-card">
+        <h3>PDF Summarizer</h3>
+        <label for="pdfText">Paste lecture notes</label>
+        <textarea id="pdfText" rows="6" placeholder="Paste your text here..."></textarea>
+        <button type="button" onclick="summarizeText()">Summarize Text</button>
+        <div id="summaryResult" class="result-box">Summarized content will appear here.</div>
+      </div>
+
+      <div class="demo-card">
+        <h3>Quiz Generator</h3>
+        <label for="quizTopic">Topic</label>
+        <input id="quizTopic" placeholder="e.g. World History" />
+        <button type="button" onclick="generateQuiz()">Generate Quiz</button>
+        <div id="quizResult" class="result-box">A quiz question will appear here.</div>
+      </div>
+
+      <div class="demo-card">
+        <h3>Attendance Tracker</h3>
+        <label for="attendedClasses">Classes attended</label>
+        <input id="attendedClasses" type="number" min="0" placeholder="10" />
+        <label for="totalClasses">Total classes</label>
+        <input id="totalClasses" type="number" min="0" placeholder="12" />
+        <button type="button" onclick="updateAttendance()">Update Attendance</button>
+        <div id="attendanceResult" class="result-box">Attendance summary will appear here.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2 class="section-title">Contact & Next Steps</h2>
+    <div class="feature-card">
+      <p>Use StudyMate AI to keep track of your study plan, manage deadlines, and stay motivated with an easy-to-use student assistant.</p>
+      <p>To expand this prototype into a full product, add data persistence, user authentication, a backend scheduler, and real PDF parsing.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>StudyMate AI prototype &middot; built for student productivity</p>
+    <p>© 2026 StudyMate AI</p>
+  </footer>
+
+  <script>
+    function generateSchedule() {
+      const subjects = document
+        .getElementById('scheduleSubjects')
+        .value
+        .split(',')
+        .map((subject) => subject.trim())
+        .filter(Boolean);
+      const days = Number(document.getElementById('scheduleDays').value);
+      const result = document.getElementById('scheduleResult');
+
+      if (!subjects.length) {
+        result.textContent = 'Enter at least one subject to generate your schedule.';
+        return;
+      }
+
+      const schedule = subjects.slice(0, days).map((subject, index) => `Day ${index + 1}: Study ${subject}`);
+      while (schedule.length < days) {
+        schedule.push(`Day ${schedule.length + 1}: Review ${subjects[schedule.length % subjects.length]}`);
+      }
+
+      result.innerHTML = schedule.map((item) => `<div>• ${item}</div>`).join('');
+    }
+
+    function addReminder() {
+      const text = document.getElementById('reminderText').value.trim();
+      const date = document.getElementById('reminderDate').value;
+      const list = document.getElementById('reminderList');
+
+      if (!text || !date) {
+        list.textContent = 'Please enter both a reminder and a due date.';
+        return;
+      }
+
+      const entry = document.createElement('div');
+      entry.style.marginBottom = '12px';
+      entry.innerHTML = `<strong>${text}</strong><br><span>Due: ${date}</span>`;
+
+      if (list.textContent === 'No reminders yet.') {
+        list.textContent = '';
+      }
+      list.appendChild(entry);
+      document.getElementById('reminderText').value = '';
+      document.getElementById('reminderDate').value = '';
+    }
+
+    function summarizeText() {
+      const text = document.getElementById('pdfText').value.trim();
+      const result = document.getElementById('summaryResult');
+      if (!text) {
+        result.textContent = 'Paste text to generate a quick summary.';
+        return;
+      }
+
+      const sentences = text.split(/(?<=[.!?])\s+/).filter(Boolean);
+      const summary = sentences.slice(0, Math.min(3, sentences.length)).join(' ');
+      result.textContent = summary || 'Unable to summarize the text. Try adding more content.';
+    }
+
+    function generateQuiz() {
+      const topic = document.getElementById('quizTopic').value.trim();
+      const result = document.getElementById('quizResult');
+      if (!topic) {
+        result.textContent = 'Enter a topic to generate a quiz question.';
+        return;
+      }
+      result.innerHTML = `<strong>Quiz Question:</strong><br>What are the three most important concepts to understand in ${topic}?`;
+    }
+
+    function updateAttendance() {
+      const attended = Number(document.getElementById('attendedClasses').value);
+      const total = Number(document.getElementById('totalClasses').value);
+      const result = document.getElementById('attendanceResult');
+
+      if (total <= 0 || attended < 0 || attended > total) {
+        result.textContent = 'Enter valid attendance numbers.';
+        return;
+      }
+
+      const percentage = ((attended / total) * 100).toFixed(1);
+      result.innerHTML = `${attended} / ${total} classes attended<br><strong>Attendance:</strong> ${percentage}%`;
+    }
+  </script>
+</body>
+
+</html> 
