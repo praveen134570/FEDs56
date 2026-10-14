@@ -1,0 +1,139 @@
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Online Voting System</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f2f2f2;
+            text-align: center;
+        }
+
+        .container {
+            width: 400px;
+            margin: 40px auto;
+            padding: 25px;
+            background: white;
+            border-radius: 10px;
+        }
+
+        input {
+            padding: 10px;
+            width: 90%;
+            margin: 8px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: green;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .candidate {
+            text-align: left;
+            margin: 15px;
+        }
+
+        #message {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🗳️ Online Voting</h1>
+
+    <input type="text" id="username" placeholder="Voter ID">
+
+    <input type="password" id="password" placeholder="Password">
+
+    <button onclick="login()">Login</button>
+
+    <div id="votingArea" style="display:none;">
+
+        <h2>Select Candidate</h2>
+
+        <div class="candidate">
+            <input type="radio" name="candidate" value="Candidate A">
+            Candidate A
+        </div>
+
+        <div class="candidate">
+            <input type="radio" name="candidate" value="Candidate B">
+            Candidate B
+        </div>
+
+        <div class="candidate">
+            <input type="radio" name="candidate" value="Candidate C">
+            Candidate C
+        </div>
+
+        <button onclick="castVote()">Cast Vote</button>
+
+    </div>
+
+    <p id="message"></p>
+
+</div>
+
+<script>
+
+function login() {
+
+    let username = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
+    let message = document.getElementById("message");
+
+    if (username === "voter123" && password === "12345678") {
+
+        message.innerHTML = "✅ Login successful!";
+        message.style.color = "green";
+
+        document.getElementById("votingArea").style.display = "block";
+
+    } else {
+
+        message.innerHTML = "❌ Invalid Voter ID or Password!";
+        message.style.color = "red";
+
+    }
+}
+
+
+function castVote() {
+
+    let candidate = document.querySelector(
+        'input[name="candidate"]:checked'
+    );
+
+    let message = document.getElementById("message");
+
+    if (candidate === null) {
+
+        message.innerHTML = "❌ Please select a candidate!";
+        message.style.color = "red";
+
+        return;
+    }
+
+    message.innerHTML =
+        "✅ Vote submitted successfully for " + candidate.value;
+
+    message.style.color = "green";
+
+    document.getElementById("votingArea").style.display = "none";
+}
+
+</script>
+
+</body>
+</html>
+```
